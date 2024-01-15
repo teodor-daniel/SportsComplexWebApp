@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Club Information</title>
+</head>
+<body>
+<h1>Club Information</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Owner Name</th>
+        <th>Sports Club Name</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="club : ${clubs}">
+        <td th:text="${club.id}"></td>
+        <td th:text="${club.ownerName}"></td>
+        <td th:text="${club.sportsClubName}"></td>
+        <td th:text="${club.email}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
