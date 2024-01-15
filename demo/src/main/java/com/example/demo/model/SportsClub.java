@@ -53,6 +53,6 @@ public class SportsClub {
         this.email = email;
     }
 
-
+    public long getId(){return  id;}
 
 }

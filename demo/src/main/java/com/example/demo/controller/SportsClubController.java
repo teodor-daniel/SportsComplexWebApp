@@ -5,12 +5,10 @@ import com.example.demo.model.SportsClub;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import com.example.demo.repository.SportsClubRepository;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-
-@RestController
-@RequestMapping("/clubs") // Define the base route for this controller
+@Controller
+@RequestMapping("/clubs")
 public class SportsClubController {
 
     private final SportsClubRepository sportsClubRepository;
@@ -20,13 +18,15 @@ public class SportsClubController {
         this.sportsClubRepository = sportsClubRepository;
     }
 
-    @GetMapping
-    public List<SportsClub> findAllClubs() {
-        return (List<SportsClub>) this.sportsClubRepository.findAll(); // Fetches all sports clubs
+
+    @GetMapping("")
+    public String clubsTable(Model model) {
+        List<SportsClub> clubs = (List<SportsClub>) this.sportsClubRepository.findAll();
+        model.addAttribute("clubs", clubs);
+        return "table";
     }
 
 
 
-
-
 }
+
