@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Club</title>
+</head>
+<body>
+<h1>Add New Club</h1>
+<form action="#" th:action="@{/clubs/add}" th:object="${sportsClub}" method="post">
+    <p>Owner Name: <input type="text" th:field="*{ownerName}" /></p>
+    <p>Club Name: <input type="text" th:field="*{sportsClubName}" /></p>
+    <p>Email: <input type="email" th:field="*{email}" /></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
+</body>
+</html>
