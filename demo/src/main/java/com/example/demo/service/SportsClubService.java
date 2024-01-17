@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.SportsClub;
 import com.example.demo.repository.SportsClubRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,18 +23,32 @@ public class SportsClubService {
     }
 
     //refactor
-    public void addClub(SportsClub sportsClub) {
-        if(!sportsClubNameExists(sportsClub.getSportsClubName())){
+    public boolean addClub(SportsClub sportsClub) {
+        if(sportsClubNameExist(sportsClub.getSportsClubName()) && sportsClubEmailExist(sportsClub.getEmail()) ){//if no email exists save
             sportsClubRepository.save(sportsClub);
+            return true;
         }
-        throw new IllegalArgumentException("Sports Club Name already exists");
-
-
+        return false;
     }
 
 
-    public boolean sportsClubNameExists(String clubName) {
-        return sportsClubRepository.findBySportsClubName(clubName).isEmpty();//if found not good throw illgealArgument
+
+    public boolean sportsClubNameExist(String clubName) {
+    if(sportsClubRepository.findBySportsClubName(clubName) == null){
+        return false;
+    }
+    return true;
     }
 
+    public boolean sportsClubEmailExist(String clubName){
+       if(sportsClubRepository.findEmail(clubName) == null ){
+           return false;
+       }
+       return true;
+    }
+
+    @Transactional
+    public void deleteClub(Long id) {
+        sportsClubRepository.deleteById(id); //this must be executed in a transaction context
+    }
 }

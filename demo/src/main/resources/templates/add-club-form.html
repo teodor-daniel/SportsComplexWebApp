@@ -12,5 +12,9 @@
     <p>Email: <input type="email" th:field="*{email}" /></p>
     <p><input type="submit" value="Submit" /></p>
 </form>
+<p th:if="${error}" th:text="${error}"></p>
+<a href="/clubs">
+    <button type="button">Back</button>
+</a>
 </body>
 </html>

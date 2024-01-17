@@ -21,8 +21,16 @@
         <td th:text="${club.ownerName}"></td>
         <td th:text="${club.sportsClubName}"></td>
         <td th:text="${club.email}"></td>
+        <td>
+            <form th:action="@{/clubs/delete/{id}(id=${club.id})}" method="post"> <!--on action(click) go to that specified url, where the id is the club id-->
+                <input type="submit" value="Delete" />
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
+<a href="/clubs/add">
+    <button type="button">Add Club</button>
+</a>
 </body>
 </html>

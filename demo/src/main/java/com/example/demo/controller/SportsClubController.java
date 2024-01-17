@@ -5,10 +5,8 @@ import com.example.demo.service.SportsClubService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -36,9 +34,22 @@ public class SportsClubController {
     }
 
     @PostMapping("/add")
-    public String addClub(@ModelAttribute SportsClub sportsClub) {
-        sportsClubService.addClub(sportsClub);
-        return "redirect:/clubs"; //redirect to clubs
+    public String addClub(@ModelAttribute SportsClub sportsClub, RedirectAttributes redirectAttributes, Model model) {
+        boolean success = sportsClubService.addClub(sportsClub);//get a logic response from services.
+        if (!success) {
+            model.addAttribute("error", "Validation error: Club name or email already exists or owner name is missing.");
+            model.addAttribute("sportsClub", sportsClub);
+            return "add-club-form";
+        }
+        return "redirect:/clubs";
     }
+    @PostMapping("/delete/{id}")
+    public String deleteClub(@PathVariable Long id) {
+        sportsClubService.deleteClub(id);
+        return "redirect:/clubs";
+    }
+
+ 
+
 
 }
