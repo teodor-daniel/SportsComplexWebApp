@@ -53,6 +53,13 @@ public class SportsClub {
         this.email = email;
     }
 
-    public long getId(){return  id;}
+    public long getId() {
+        return id;
+    }
+    public  void setId(Long id){this.id = id;}
 
+    @Override
+    public String toString() {
+        return "id: " + this.id + " owner " + this.ownerName  + " sportsClub " + this.sportsClubName + " email " + this.email;
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SportsClubService {
@@ -26,11 +27,15 @@ public class SportsClubService {
     public boolean addClub(SportsClub sportsClub) {
         if(sportsClubNameExist(sportsClub.getSportsClubName()) && sportsClubEmailExist(sportsClub.getEmail()) ){//if no email exists save
             sportsClubRepository.save(sportsClub);
+
             return true;
         }
         return false;
     }
-
+    public SportsClub findClubById(Long id) {
+        Optional<SportsClub> club = sportsClubRepository.findById(id);
+        return club.orElse(null); // Returns the club if found, otherwise returns null
+    }
 
 
     public boolean sportsClubNameExist(String clubName) {
@@ -48,7 +53,23 @@ public class SportsClubService {
     }
 
     @Transactional
+    public void updateClub(SportsClub sportsClubNew) {
+        Optional<SportsClub> sportsClubOldOptional = sportsClubRepository.findById(sportsClubNew.getId());
+        if (sportsClubOldOptional.isPresent()) {
+            SportsClub sportsClubOld = sportsClubOldOptional.get();
+            sportsClubOld.setOwnerName(sportsClubNew.getOwnerName());
+            sportsClubOld.setSportsClubName(sportsClubNew.getSportsClubName());
+            sportsClubOld.setEmail(sportsClubNew.getEmail());
+            sportsClubRepository.save(sportsClubOld);
+        }
+    }
+
+
+
+    @Transactional
     public void deleteClub(Long id) {
         sportsClubRepository.deleteById(id); //this must be executed in a transaction context
     }
+
+
 }

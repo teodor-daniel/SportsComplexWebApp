@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -43,13 +44,40 @@ public class SportsClubController {
         }
         return "redirect:/clubs";
     }
+
+    @GetMapping("/update/{id}")
+    public String showUpdateForm(@PathVariable Long id, Model model) {
+        SportsClub club = sportsClubService.findClubById(id);
+        if (club != null) {
+            model.addAttribute("sportsClub", club);
+            System.out.println("Look here the get method is working " + club.getId());
+            return "update-club-form";
+        } else {
+            return "redirect:/clubs";
+        }
+    }
+
+
+    @PostMapping("/update")
+    public String updateClub(@ModelAttribute SportsClub sportsClub) {
+//        System.out.println(sportsClub.getOwnerName()); debugging
+//        System.out.println(sportsClub.getId() + " THe id that i am trina find");
+        System.out.println(sportsClubService.findClubById(sportsClub.getId()));
+
+        sportsClubService.updateClub(sportsClub);
+        return "redirect:/clubs";
+    }
+
+
     @PostMapping("/delete/{id}")
     public String deleteClub(@PathVariable Long id) {
         sportsClubService.deleteClub(id);
         return "redirect:/clubs";
     }
 
- 
+
+
+
 
 
 }

@@ -13,6 +13,7 @@
         <th>Owner Name</th>
         <th>Sports Club Name</th>
         <th>Email</th>
+        <th>Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -22,7 +23,10 @@
         <td th:text="${club.sportsClubName}"></td>
         <td th:text="${club.email}"></td>
         <td>
-            <form th:action="@{/clubs/delete/{id}(id=${club.id})}" method="post"> <!--on action(click) go to that specified url, where the id is the club id-->
+            <a th:href="@{/clubs/update/{id}(id=${club.id})}">
+                <button type="button">Update</button>
+            </a>
+            <form th:action="@{/clubs/delete/{id}(id=${club.id})}" method="post">
                 <input type="submit" value="Delete" />
             </form>
         </td>
