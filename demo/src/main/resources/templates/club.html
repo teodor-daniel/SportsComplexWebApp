@@ -3,9 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Club Information</title>
+    <link th:href="@{/styles/club.css}" rel="stylesheet" />
+
+
 </head>
 <body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
 <h1>Club Information</h1>
+<div id="clubs-layout">
 <table>
     <thead>
     <tr>
@@ -32,9 +37,12 @@
         </td>
     </tr>
     </tbody>
+
+
 </table>
-<a href="/clubs/add">
-    <button type="button">Add Club</button>
-</a>
+    <a href="/clubs/add">
+        <button id="club-add-button" type="button">Add Club</button>
+    </a>
+</div>
 </body>
 </html>

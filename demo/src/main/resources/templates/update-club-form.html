@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Update Club</title>
+    <link th:href="@{/styles/form.css}" rel="stylesheet">
 </head>
 <body>
 <h1>Update Club</h1>
@@ -23,5 +24,6 @@
     </label></p>
     <input type="submit" value="Update" />
 </form>
+<p th:if="${error}" th:text="${error}"></p>
 </body>
 </html>

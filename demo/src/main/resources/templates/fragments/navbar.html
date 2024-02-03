@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Navigation Bar Fragment</title>
+</head>
+<body>
+<nav th:fragment="navbar">
+    <link th:href="@{/styles/nav.css}" rel="stylesheet" type="text/css" media="all" href="../../static/styles/nav.css">
+    <link th:href="@{/styles/general.css}" rel="stylesheet" type="text/css" media="all" href="../../static/styles/general.css">
+    <!--it makes sense when you send a fragment to send the css as well.-->
+    <ul class="nav">
+        <li><a th:href="@{/}">Home</a></li>
+        <li><a th:href="@{/clubs}">Clubs</a></li>
+    </ul>
+</nav>
+</body>
+</html>

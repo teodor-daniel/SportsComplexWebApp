@@ -1,0 +1,75 @@
+* {
+    box-sizing: border-box;
+}
+
+table {
+    width: 50%;
+    border-collapse: collapse;
+    margin: auto;
+    position: relative;
+}
+
+
+th, td {
+    text-align: center;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+tr{
+    text-align: justify-all;
+    margin: auto;
+    padding: inherit;
+}
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: white;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+button, input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+form {
+    display: inline;
+}
+
+.add-club-button {
+    display: block;
+    justify-content: center;
+    width: 200px;
+    margin: 20px auto;
+    text-align: center;
+}

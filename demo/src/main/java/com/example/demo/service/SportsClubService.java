@@ -52,16 +52,28 @@ public class SportsClubService {
        return true;
     }
 
+    public boolean sportsClubOwnerNameExist(String clubOwner){
+        if(sportsClubRepository.findOwner(clubOwner) == null){
+            return false;
+        }
+        return true;
+    }
+
     @Transactional
-    public void updateClub(SportsClub sportsClubNew) {
+    public boolean updateClub(SportsClub sportsClubNew) {
         Optional<SportsClub> sportsClubOldOptional = sportsClubRepository.findById(sportsClubNew.getId());
         if (sportsClubOldOptional.isPresent()) {
             SportsClub sportsClubOld = sportsClubOldOptional.get();
+            if(sportsClubNameExist(sportsClubNew.getSportsClubName()) || sportsClubEmailExist(sportsClubNew.getEmail()) || sportsClubOwnerNameExist(sportsClubNew.getOwnerName())){
+                return false;
+            }
             sportsClubOld.setOwnerName(sportsClubNew.getOwnerName());
             sportsClubOld.setSportsClubName(sportsClubNew.getSportsClubName());
             sportsClubOld.setEmail(sportsClubNew.getEmail());
             sportsClubRepository.save(sportsClubOld);
+            return true;
         }
+        return false;
     }
 
 

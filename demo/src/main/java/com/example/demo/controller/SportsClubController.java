@@ -35,8 +35,8 @@ public class SportsClubController {
     }
 
     @PostMapping("/add")
-    public String addClub(@ModelAttribute SportsClub sportsClub, RedirectAttributes redirectAttributes, Model model) {
-        boolean success = sportsClubService.addClub(sportsClub);//get a logic response from services.
+    public String addClub(@ModelAttribute SportsClub sportsClub, Model model) {
+        boolean success = sportsClubService.addClub(sportsClub);//get a logic response from services
         if (!success) {
             model.addAttribute("error", "Validation error: Club name or email already exists or owner name is missing.");
             model.addAttribute("sportsClub", sportsClub);
@@ -59,12 +59,16 @@ public class SportsClubController {
 
 
     @PostMapping("/update")
-    public String updateClub(@ModelAttribute SportsClub sportsClub) {
+    public String updateClub(@ModelAttribute SportsClub sportsClub, Model model) {
 //        System.out.println(sportsClub.getOwnerName()); debugging
 //        System.out.println(sportsClub.getId() + " THe id that i am trina find");
-        System.out.println(sportsClubService.findClubById(sportsClub.getId()));
+//        System.out.println(sportsClubService.findClubById(sportsClub.getId()));
 
-        sportsClubService.updateClub(sportsClub);
+        boolean success = sportsClubService.updateClub(sportsClub);
+        if(!success){
+            model.addAttribute("error", "Validation error: It seems this name is taken.");
+            return "update-club-form";
+        }
         return "redirect:/clubs";
     }
 

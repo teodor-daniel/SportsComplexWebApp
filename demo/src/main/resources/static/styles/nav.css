@@ -1,0 +1,26 @@
+.nav {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    background-color: #003366; /*no need to do it for specific classes as i have one nav.*/
+    align-items: center;
+    width: 100%;
+    margin: 0;
+}
+
+.nav li {
+    display: inline-block;
+}
+
+.nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav li a:hover, .nav li a:focus {
+    background-color: #4CAF50;
+    color: white;
+}
