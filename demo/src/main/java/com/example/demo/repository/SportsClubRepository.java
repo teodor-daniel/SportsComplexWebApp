@@ -1,5 +1,6 @@
     package com.example.demo.repository;
 
+    import com.example.demo.dataTransferObject.SportsClubDTO;
     import com.example.demo.model.SportsClub;
     import org.springframework.data.jpa.repository.Query;
     import org.springframework.data.repository.CrudRepository;
@@ -8,7 +9,7 @@
     import java.util.List;
     import java.util.Optional;
 
-    public interface SportsClubRepository extends CrudRepository<SportsClub, Integer> {
+    public interface SportsClubRepository extends CrudRepository<SportsClub, Long> {
 
         //TO do multiple like this.
         @Query("select s.ownerName from SportsClub s where s.ownerName = :ownerName ")
@@ -26,6 +27,12 @@
 
         Optional<SportsClub> findById(Long id);
         void deleteById(Long id);
+
+
+        @Query("SELECT  new com.example.demo.dataTransferObject.SportsClubDTO(s.id, s.ownerName, s.sportsClubName, s.email, COUNT(a)) " +
+                "FROM SportsClub s LEFT JOIN s.athletes a " +
+                "GROUP BY s.id, s.ownerName, s.sportsClubName, s.email")
+        List<SportsClubDTO> findAllClubsWithAthletesCount();
 
 
     }

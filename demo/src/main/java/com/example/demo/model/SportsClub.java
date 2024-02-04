@@ -3,6 +3,8 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "sports_club")
 public class SportsClub {
@@ -20,7 +22,8 @@ public class SportsClub {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-
+    @OneToMany(mappedBy = "sportsClub", fetch = FetchType.LAZY)
+    private Set<Athlete> athletes;
     public SportsClub(){};
 
     public SportsClub(String ownerName, String sportsClubName, String email){

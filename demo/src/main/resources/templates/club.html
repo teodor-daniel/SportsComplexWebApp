@@ -18,15 +18,17 @@
         <th>Owner Name</th>
         <th>Sports Club Name</th>
         <th>Email</th>
+        <th>Number of Athletes</th>
         <th>Actions</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="club : ${clubs}">
+    <tr th:each="club : ${clubsWithCounts}">
         <td th:text="${club.id}"></td>
         <td th:text="${club.ownerName}"></td>
         <td th:text="${club.sportsClubName}"></td>
         <td th:text="${club.email}"></td>
+        <td th:text="${club.athleteCount}"></td>
         <td>
             <a th:href="@{/clubs/update/{id}(id=${club.id})}">
                 <button type="button">Update</button>

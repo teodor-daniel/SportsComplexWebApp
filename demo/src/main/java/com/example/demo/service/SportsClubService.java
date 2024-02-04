@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dataTransferObject.SportsClubDTO;
 import com.example.demo.model.SportsClub;
 import com.example.demo.repository.SportsClubRepository;
 import jakarta.transaction.Transactional;
@@ -19,8 +20,13 @@ public class SportsClubService {
         this.sportsClubRepository = sportsClubRepository;
     }
 
+
+
     public List<SportsClub> findAllClubs() {
         return (List<SportsClub>) sportsClubRepository.findAll();
+    }
+    public List<SportsClubDTO> findAllClubsWithAthleteCount() {
+        return sportsClubRepository.findAllClubsWithAthletesCount();
     }
 
     //refactor

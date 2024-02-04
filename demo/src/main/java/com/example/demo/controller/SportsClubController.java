@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dataTransferObject.SportsClubDTO;
 import com.example.demo.model.SportsClub;
 import com.example.demo.service.SportsClubService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +23,20 @@ public class SportsClubController {
         this.sportsClubService = sportsClubService;
     }
 
+//    @GetMapping("")
+//    public String clubsTable(Model model) {
+//        List<SportsClub> clubs = sportsClubService.findAllClubs();
+//        model.addAttribute("clubs", clubs);
+//        return "club";
+//    }
+
     @GetMapping("")
     public String clubsTable(Model model) {
-        List<SportsClub> clubs = sportsClubService.findAllClubs();
-        model.addAttribute("clubs", clubs);
+        List<SportsClubDTO> clubsWithCounts = sportsClubService.findAllClubsWithAthleteCount();
+        model.addAttribute("clubsWithCounts", clubsWithCounts);
         return "club";
     }
+
     @GetMapping("/add")
     public String addClubs(Model model) {
         model.addAttribute("sportsClub", new SportsClub());
