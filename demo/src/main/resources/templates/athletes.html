@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Athleates</title>
+</head>
+<body>
+<div th:replace="~{fragments/navbar::navbar}"></div>
+<h1>Athletes Information</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Athlete Name</th>
+        <th>BirthDate</th>
+        <th>Gen</th>
+        <th>Phone Number</th>
+        <th>Sports-Club Id</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="athletes : ${athlete}">
+        <td th:text="${athletes.id}"></td>
+        <td th:text="${athletes.name}"></td>
+        <td th:text="${athletes.birthdate}"></td>
+        <td th:text="${athletes.gen}"></td>
+        <td th:text="${athletes.phoneNumber}"></td>
+        <td th:text="${athletes.sportsClub.id}"></td>
+
+    </tr>
+    </tbody>
+
+</table>
+<a href="/athletes/add">
+    <button id="club-add-button" type="button">Add Athlete</button>
+</a>
+</body>
+</html>

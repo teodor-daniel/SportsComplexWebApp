@@ -6,6 +6,8 @@
     <link th:href="@{/styles/form.css}" rel="stylesheet">
 </head>
 <body>
+<div th:replace="~{fragments/navbar::navbar}"></div>
+
 <h1>Add New Club</h1>
 <form action="#" th:action="@{/clubs/add}" th:object="${sportsClub}" method="post">
     <p>Owner Name: <input type="text" th:field="*{ownerName}" /></p>

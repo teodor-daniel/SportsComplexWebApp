@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>My Page</title>
 </head>
 <body>
-<p>Normal page test. Hope it fixes it retry
+<div th:replace="~{fragments/navbar::navbar}"></div>
+<h1>Buttons to all the pages, this will be like a presentation page</h1>
     <a href="/clubs">
         <button type="button">Clubs</button>
+    </a>
+    <a href="/athletes">
+        <button type="button">Athletes</button>
     </a>
 
 </body>

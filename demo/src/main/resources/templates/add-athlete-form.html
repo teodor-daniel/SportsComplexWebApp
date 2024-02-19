@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Athlete</title>
+  <link th:href="@{/styles/form.css}" rel="stylesheet">
+
+</head>
+<div th:replace="~{fragments/navbar::navbar}"></div>
+
+<body>
+
+<h1>Add New Athlete</h1>
+<form th:action="@{/athlete/add}" th:object="${athlete}" method="post">
+  <p>Name: <input type="text" th:field="*{name}" /></p>
+  <p>Birthdate: <input type="date" th:field="*{birthdate}" /></p>
+  <p>Gen: <input type="text" th:field="*{gen}" /></p>
+  <p>PhoneNumber: <input type="text" th:field="*{phoneNumber}" /></p>
+  <p>Club ID: <input type="text" name="clubId" /></p>
+
+  <p><input type="submit" value="Submit" /></p>
+</form>
+<a href="/athletes">
+  <button type="button">Back</button>
+</a>
+</body>
+</html>
