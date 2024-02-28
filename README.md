@@ -19,11 +19,4 @@ This Spring Boot-based SportsClub Management App offers a full-stack solution fo
 - **Cookie Management:** Utilize cookies 🍪 for a personalized user experience, remembering user preferences and session information.
 
 ## Technologies Used
-
-- **Spring Boot:** Framework for building stand-alone, production-grade Spring-based applications with ease.
-- **Spring MVC:** Web framework based on the Model-View-Controller architecture for building web applications.
-- **Spring Data JPA:** Module for simplifying data access within Spring applications, improving persistence layer implementation.
-- **Thymeleaf:** Modern server-side Java template engine for web and standalone environments.
-- **PostgreSQL:** Advanced, open-source relational database providing robust data storage solutions.
-- **Bootstrap:** Sleek, intuitive, and powerful front-end framework for faster and easier web development.
-- **Custom CSS:** Tailored style definitions to enhance the application's visual appeal and user experience.
+Spring Boot, Spring MVC, Spring Data, JPA, Thymeleaf, PostgreSQL, Bootstrap, Custom CSS
