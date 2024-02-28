@@ -3,10 +3,10 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-@Table
 @Entity
+@Table(name = "athlete")
 public class Athlete {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,7 +17,7 @@ public class Athlete {
     private String name;
 
     @Column(nullable = false)
-    private Date birthdate;
+    private LocalDate birthdate;
 
     @Column(nullable = false, length = 1)
     private String gen;
@@ -25,10 +25,19 @@ public class Athlete {
     @Column(length = 12, unique = true, nullable = false)
     private String phoneNumber;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn()
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "sports_club_id", nullable = false)
     private SportsClub sportsClub;
 
+    public  Athlete(){}
+
+    public Athlete(String name, LocalDate birthdate, String gen, String phoneNumber, SportsClub sportsClub) {
+        this.name = name;
+        this.birthdate = birthdate;
+        this.gen = gen;
+        this.phoneNumber = phoneNumber;
+        this.sportsClub = sportsClub;
+    }
 
     public Long getId() {
         return id;
@@ -46,11 +55,11 @@ public class Athlete {
         this.name = name;
     }
 
-    public Date getBirthdate() {
+    public LocalDate getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
 

@@ -31,13 +31,33 @@ public class SportsClubService {
 
     //refactor
     public boolean addClub(SportsClub sportsClub) {
-        if(sportsClubNameExist(sportsClub.getSportsClubName()) && sportsClubEmailExist(sportsClub.getEmail()) ){//if no email exists save
-            sportsClubRepository.save(sportsClub);
 
-            return true;
+        if(!sportsClubNameExist(sportsClub.getSportsClubName()) ){
+            return false;
         }
-        return false;
+        if(!sportsClubEmailExist(sportsClub.getEmail()) ){
+            return false;
+        }
+        if(!checkConstraints(sportsClub)){
+            return false;
+        }
+        sportsClubRepository.save(sportsClub);
+        return true;
     }
+
+    public boolean checkConstraints(SportsClub sportsClub){
+        if(sportsClub.getOwnerName().length() > 200){
+            return false;
+        }
+        if(sportsClub.getSportsClubName().length() > 200){
+            return false;
+        }
+        if(sportsClub.getEmail().length() > 100){
+            return false;
+        }
+        return true;
+    }
+
     public SportsClub findClubById(Long id) {
         Optional<SportsClub> club = sportsClubRepository.findById(id);
         return club.orElse(null); // Returns the club if found, otherwise returns null
@@ -45,17 +65,12 @@ public class SportsClubService {
 
 
     public boolean sportsClubNameExist(String clubName) {
-    if(sportsClubRepository.findBySportsClubName(clubName) == null){
-        return false;
-    }
-    return true;
+        return sportsClubRepository.findBySportsClubName(clubName) != null;
     }
 
+
     public boolean sportsClubEmailExist(String clubName){
-       if(sportsClubRepository.findEmail(clubName) == null ){
-           return false;
-       }
-       return true;
+       return sportsClubRepository.findEmail(clubName) != null;
     }
 
     public boolean sportsClubOwnerNameExist(String clubOwner){

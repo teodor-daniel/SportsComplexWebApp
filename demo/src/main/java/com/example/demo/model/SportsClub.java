@@ -3,6 +3,7 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -10,6 +11,7 @@ import java.util.Set;
 public class SportsClub {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ID")
     private Long id;
 
 
@@ -22,8 +24,9 @@ public class SportsClub {
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @OneToMany(mappedBy = "sportsClub", fetch = FetchType.LAZY)
-    private Set<Athlete> athletes;
+    @OneToMany(mappedBy = "sportsClub", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Athlete> athletes;
+
     public SportsClub(){};
 
     public SportsClub(String ownerName, String sportsClubName, String email){

@@ -4,6 +4,7 @@ import com.example.demo.model.Athlete;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.lang.NonNull;
 
 import java.util.List;
 
@@ -15,6 +16,8 @@ public interface AthleteRepository extends CrudRepository<Athlete , Long> {
 
     @Query("SELECT DISTINCT a.sportsClub.id FROM Athlete a")
     List<Long> findDistinctClubIds();
+
+    boolean existsById(@NonNull Long id);
 
 
 }

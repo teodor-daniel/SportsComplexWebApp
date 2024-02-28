@@ -23,7 +23,8 @@
 
         @Query("SELECT s.email FROM SportsClub s WHERE s.email = :clubEmail")
         Optional<String> findEmail(@Param("clubEmail") String clubEmail);
-
+        @Query("SELECT DISTINCT s.id FROM SportsClub s")
+        List<Long> findDistinctClubIds();
 
         Optional<SportsClub> findById(Long id);
         void deleteById(Long id);
