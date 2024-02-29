@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <title>Update Club</title>
     <link th:href="@{/styles/form.css}" rel="stylesheet">
+
 </head>
 <body>
+<div th:replace="~{fragments/navbar::navbar}"></div>
 <h1>Update Club</h1>
 <form th:action="@{/clubs/update}" th:object="${sportsClub}" method="post">
-<!--    <input type="hidden" th:field="*{id}" />-->
     <p><label>
         <input type="hidden" th:field="*{id}" />
     </label></p>
-<!--    For whatever reason it seems if the <p> tag is not used for the id it will pass it as null, this does not appear to be the case in the offfical documentation.-->
     <p>Owner Name: <label>
         <input type="text" th:field="*{ownerName}" />
     </label></p>

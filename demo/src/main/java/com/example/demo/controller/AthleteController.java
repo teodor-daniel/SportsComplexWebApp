@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -51,4 +48,34 @@ public class AthleteController {
             return "add-athlete-form";
         }
     }
+
+    @GetMapping("/update/{id}")
+    public String showUpdateForm(@PathVariable Long id, Model model) {
+        Athlete athlete = athleteService.findById(id);
+        if (athlete != null) {
+            model.addAttribute("athlete", athlete);
+            model.addAttribute("clubs", athleteService.findAllClubs());
+            return "update-athlete-form";
+        } else {
+            return "redirect:/athletes";
+        }
+    }
+
+    @PostMapping("/update")
+    public String updateClub(@ModelAttribute Athlete athlete, Model model) {
+
+        boolean success = athleteService.update(athlete);
+        if(!success){
+            model.addAttribute("error", "Validation error");
+            return "update-athlete-form";
+        }
+        return "redirect:/athletes";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteClub(@PathVariable Long id) {
+        athleteService.delete(id);
+        return "redirect:/athletes";
+    }
+
 }

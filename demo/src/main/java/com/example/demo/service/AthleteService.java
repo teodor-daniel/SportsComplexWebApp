@@ -4,12 +4,14 @@ import com.example.demo.model.Athlete;
 import com.example.demo.model.SportsClub;
 import com.example.demo.repository.AthleteRepository;
 import com.example.demo.repository.SportsClubRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AthleteService {
@@ -24,26 +26,47 @@ public class AthleteService {
 
     public List<SportsClub> findAllClubs() {
         List<Long> clubIds = clubRepository.findDistinctClubIds();
-        System.out.println(clubIds);
-        System.out.println((List<SportsClub>) clubRepository.findAllById(clubIds));
         return (List<SportsClub>) clubRepository.findAllById(clubIds);
     }
 
     public boolean addAthlete(Athlete athlete) {
+        checkConstraint(athlete);
+        athleteRepository.save(athlete);
+        return true;
+    }
+
+    public boolean checkConstraint(Athlete athlete){
         if (!clubRepository.existsById(athlete.getSportsClub().getId())) {
             return false;
         }
         if(athlete.getName().length() > 30){
             return false;
         }
-        if(athlete.getGen().equals("M") || athlete.getGen().equals("F")){
+        if(!(athlete.getGen().equals("M") || athlete.getGen().equals("F"))){
             return false;
         }
         if(athlete.getPhoneNumber().length()  != 12){
             return false;
         }
-        athleteRepository.save(athlete);
         return true;
+    }
+    @Transactional
+    public boolean update(Athlete athlete){
+        if(checkConstraint(athlete)){
+            Athlete athleteOld = findById(athlete.getId());
+            athleteOld.setBirthdate(athlete.getBirthdate());
+            athleteOld.setName(athlete.getName());
+            athleteOld.setGen(athlete.getGen());
+            athleteOld.setPhoneNumber(athlete.getPhoneNumber());
+            athleteOld.setSportsClub(athlete.getSportsClub());
+            athleteRepository.save(athleteOld);
+            return true;
+        }
+        return false;
+    }
+    public Athlete findById(Long id){
+        Optional<Athlete> athlete = athleteRepository.findById(id);
+        return athlete.orElse(null);
     }
 
     public boolean existPhoneNumber(Athlete athlete){
@@ -51,6 +74,11 @@ public class AthleteService {
     }
     public List<Athlete> findAllAthletes(){
         return athleteRepository.findAllAthletes();
+    }
+
+    @Transactional
+    public void delete(Long id) {
+        athleteRepository.deleteById(id);
     }
 
 }

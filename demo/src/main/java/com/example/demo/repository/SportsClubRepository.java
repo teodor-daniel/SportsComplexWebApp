@@ -11,7 +11,6 @@
 
     public interface SportsClubRepository extends CrudRepository<SportsClub, Long> {
 
-        //TO do multiple like this.
         @Query("select s.ownerName from SportsClub s where s.ownerName = :ownerName ")
         List<String> findOwner(@Param("ownerName") String ownerName);
 
@@ -23,7 +22,7 @@
 
         @Query("SELECT s.email FROM SportsClub s WHERE s.email = :clubEmail")
         Optional<String> findEmail(@Param("clubEmail") String clubEmail);
-        @Query("SELECT DISTINCT s.id FROM SportsClub s")
+        @Query("SELECT DISTINCT s.id FROM SportsClub s order by  s.id")
         List<Long> findDistinctClubIds();
 
         Optional<SportsClub> findById(Long id);
@@ -32,7 +31,7 @@
 
         @Query("SELECT  new com.example.demo.dataTransferObject.SportsClubDTO(s.id, s.ownerName, s.sportsClubName, s.email, COUNT(a)) " +
                 "FROM SportsClub s LEFT JOIN s.athletes a " +
-                "GROUP BY s.id, s.ownerName, s.sportsClubName, s.email")
+                "GROUP BY s.id, s.ownerName, s.sportsClubName, s.email order by s.id")
         List<SportsClubDTO> findAllClubsWithAthletesCount();
 
 

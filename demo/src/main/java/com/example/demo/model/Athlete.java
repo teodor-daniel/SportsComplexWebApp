@@ -25,7 +25,7 @@ public class Athlete {
     @Column(length = 12, unique = true, nullable = false)
     private String phoneNumber;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "sports_club_id", nullable = false)
     private SportsClub sportsClub;
 
@@ -87,5 +87,15 @@ public class Athlete {
         this.sportsClub = sportsClub;
     }
 
-
+    @Override
+    public String toString() {
+        return "Athlete{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", birthdate=" + birthdate +
+                ", gen='" + gen + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", sportsClub=" + sportsClub +
+                '}';
+    }
 }

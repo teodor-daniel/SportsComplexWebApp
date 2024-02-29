@@ -73,7 +73,7 @@ public class SportsClubController {
 //        System.out.println(sportsClub.getId() + " THe id that i am trina find");
 //        System.out.println(sportsClubService.findClubById(sportsClub.getId()));
 
-        boolean success = sportsClubService.updateClub(sportsClub);
+        boolean success = sportsClubService.update(sportsClub);
         if(!success){
             model.addAttribute("error", "Validation error: It seems this name is taken.");
             return "update-club-form";
@@ -84,7 +84,7 @@ public class SportsClubController {
 
     @PostMapping("/delete/{id}")
     public String deleteClub(@PathVariable Long id) {
-        sportsClubService.deleteClub(id);
+        sportsClubService.delete(id);
         return "redirect:/clubs";
     }
 

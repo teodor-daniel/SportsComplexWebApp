@@ -81,7 +81,7 @@ public class SportsClubService {
     }
 
     @Transactional
-    public boolean updateClub(SportsClub sportsClubNew) {
+    public boolean update(SportsClub sportsClubNew) {
         Optional<SportsClub> sportsClubOldOptional = sportsClubRepository.findById(sportsClubNew.getId());
         if (sportsClubOldOptional.isPresent()) {
             SportsClub sportsClubOld = sportsClubOldOptional.get();
@@ -100,7 +100,7 @@ public class SportsClubService {
 
 
     @Transactional
-    public void deleteClub(Long id) {
+    public void delete(Long id) {
         sportsClubRepository.deleteById(id); //this must be executed in a transaction context
     }
 

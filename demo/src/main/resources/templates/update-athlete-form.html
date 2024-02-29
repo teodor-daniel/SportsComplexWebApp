@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Club</title>
+    <link th:href="@{/styles/form.css}" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="~{fragments/navbar::navbar}"></div>
+<h1>Update Athlete</h1>
+<form th:action="@{/athletes/update}" th:object="${athlete}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p>Birthdate: <input type="date" th:field="*{birthdate}" /></p>
+    <p>Phone Number: <input type="text" th:field="*{phoneNumber}" /></p>
+    <p>
+        <select th:field="*{gen}">
+            <option value="">Select gender</option>
+            <option value="M">M</option>
+            <option value="F">F</option>
+        </select>
+    </p>
+    <p>Club:
+        <select th:field="*{sportsClub}">
+            <option value="">Select Club</option>
+            <option th:each="club : ${clubs}" th:value="${club.getId()}"
+                    th:text="${club.getId()} + ' - ' + ${club.getSportsClubName()}"></option>
+        </select>
+    </p>
+    <input type="submit" value="Update" />
+</form>
+<p th:if="${error}" th:text="${error}"></p>
+</body>
+</html>

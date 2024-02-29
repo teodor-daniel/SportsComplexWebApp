@@ -14,8 +14,10 @@ public interface AthleteRepository extends CrudRepository<Athlete , Long> {
     @Query("Select a FROM Athlete a")
     List<Athlete> findAllAthletes();
 
-    @Query("SELECT DISTINCT a.sportsClub.id FROM Athlete a")
+    @Query("SELECT DISTINCT a.sportsClub.id FROM Athlete a order by a.sportsClub.id")
     List<Long> findDistinctClubIds();
+    @Query("SELECT  a.id, a.birthdate, a.gen, a.name, a.phoneNumber, a.sportsClub from Athlete a where  a.id = : athleteId")
+    Athlete findbyId(@Param("athleteId") Long athleteId);
 
     boolean existsById(@NonNull Long id);
 
