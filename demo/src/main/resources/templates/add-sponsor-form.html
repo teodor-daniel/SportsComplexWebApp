@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Sponsor</title>
+  <link th:href="@{/styles/form.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/navbar::navbar}"></div>
+
+<h1>Add New Sponsor</h1>
+<form action="#" th:action="@{/sponsors/add}" th:object="${sponsor}" method="post">
+  <p>Name: <input type="text" th:field="*{name}" /></p>
+  <p>Address: <input type="text" th:field="*{address}" /></p>
+  <p>Email: <input type="email" th:field="*{email}" /></p>
+  <p>Phone: <input type="text" th:field="*{phone}" /></p>
+  <p><input type="submit" value="Submit" /></p>
+</form>
+<p th:if="${error}" th:text="${error}"></p>
+<a href="/sponsors/">
+  <button type="button">Back</button>
+</a>
+</body>
+</html>

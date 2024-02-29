@@ -31,10 +31,10 @@
         <td th:text="${club.athleteCount}"></td>
         <td>
             <a th:href="@{/clubs/update/{id}(id=${club.id})}">
-                <button type="button">Update</button>
+                <button class="update" type="button">Update</button>
             </a>
             <form th:action="@{/clubs/delete/{id}(id=${club.id})}" method="post">
-                <input type="submit" value="Delete" />
+                <input class="delete" type="submit" value="Delete" />
             </form>
         </td>
     </tr>
@@ -43,10 +43,10 @@
 
 </table>
     <a href="/clubs/add">
-        <button id="club-add-button" type="button">Add Club</button>
+        <button class="back" type="button">Add Club</button>
     </a>
     <a href="/">
-        <button type="button">Back</button>
+        <button class="back" type="button">Back</button>
     </a>
 </div>
 

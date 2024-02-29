@@ -46,8 +46,6 @@ h1 {
 }
 
 button, input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
     border: none;
     cursor: pointer;
     padding: 10px 20px;
@@ -56,10 +54,6 @@ button, input[type="submit"] {
     font-size: 16px;
     margin: 4px 2px;
     transition-duration: 0.4s;
-}
-
-button:hover, input[type="submit"]:hover {
-    background-color: #45a049;
 }
 
 form {
@@ -76,4 +70,19 @@ form {
     cursor: pointer;
     display: block;
     width: 10%;
+}
+
+.back{
+    background-color: #003366;
+    color: white;
+}
+
+.delete{
+    background-color: red;
+    color:white;
+}
+
+.update{
+    background-color: #4CAF50;
+    color:white;
 }

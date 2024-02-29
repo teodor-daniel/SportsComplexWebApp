@@ -6,12 +6,12 @@
 <body>
 <div th:replace="~{fragments/navbar::navbar}"></div>
 <h1>Buttons to all the pages, this will be like a presentation page</h1>
-    <a href="/clubs">
-        <button type="button">Clubs</button>
-    </a>
-    <a href="/athletes">
-        <button type="button">Athletes</button>
-    </a>
-
+<table>
+    <tr>
+        <td><a href="/clubs"><button type="button">Clubs</button></a></td>
+        <td><a href="/athletes"><button type="button">Athletes</button></a></td>
+        <td><a href="/sponsors"><button type="button">Sponsors</button></a></td>
+    </tr>
+</table>
 </body>
 </html>

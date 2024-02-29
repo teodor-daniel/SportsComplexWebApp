@@ -21,7 +21,6 @@ public class SportsClubService {
     }
 
 
-
     public List<SportsClub> findAllClubs() {
         return (List<SportsClub>) sportsClubRepository.findAll();
     }

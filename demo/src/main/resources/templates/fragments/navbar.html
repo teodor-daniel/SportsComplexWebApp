@@ -8,11 +8,14 @@
 <nav th:fragment="navbar">
     <link th:href="@{/styles/nav.css}" rel="stylesheet" type="text/css" media="all" href="../../static/styles/nav.css">
     <link th:href="@{/styles/general.css}" rel="stylesheet" type="text/css" media="all" href="../../static/styles/general.css">
+<!--    <link th:href="@{/styles/form.css}" rel="stylesheet" type="text/css" media="all" />-->
+
     <!--it makes sense when you send a fragment to send the css as well.-->
     <ul class="nav">
         <li><a th:href="@{/}">Home</a></li>
         <li><a th:href="@{/clubs}">Clubs</a></li>
         <li><a th:href="@{/athletes}">Athletes</a> </li>
+        <li><a th:href="@{/sponsors}">Sponsor</a></li>
     </ul>
 </nav>
 </body>
