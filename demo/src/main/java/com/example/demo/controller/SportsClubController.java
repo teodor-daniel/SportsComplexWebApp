@@ -75,6 +75,7 @@ public class SportsClubController {
 
         boolean success = sportsClubService.update(sportsClub);
         if(!success){
+            System.out.println("Validation error");
             model.addAttribute("error", "Validation error: It seems this name is taken.");
             return "update-club-form";
         }

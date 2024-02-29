@@ -66,6 +66,7 @@ public class AthleteController {
 
         boolean success = athleteService.update(athlete);
         if(!success){
+            System.out.println("Eroare succes");
             model.addAttribute("error", "Validation error");
             return "update-athlete-form";
         }

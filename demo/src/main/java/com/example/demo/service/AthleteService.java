@@ -48,6 +48,9 @@ public class AthleteService {
         if(athlete.getPhoneNumber().length()  != 12){
             return false;
         }
+        if(athlete.getBirthdate() == null){
+            return false;
+        }
         return true;
     }
     @Transactional
@@ -59,6 +62,9 @@ public class AthleteService {
             athleteOld.setGen(athlete.getGen());
             athleteOld.setPhoneNumber(athlete.getPhoneNumber());
             athleteOld.setSportsClub(athlete.getSportsClub());
+            if(athleteOld.getBirthdate() == null){
+                return false;
+            }
             athleteRepository.save(athleteOld);
             return true;
         }

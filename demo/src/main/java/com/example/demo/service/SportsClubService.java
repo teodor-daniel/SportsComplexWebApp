@@ -28,13 +28,11 @@ public class SportsClubService {
         return sportsClubRepository.findAllClubsWithAthletesCount();
     }
 
-    //refactor
     public boolean addClub(SportsClub sportsClub) {
-
-        if(!sportsClubNameExist(sportsClub.getSportsClubName()) ){
+        if(sportsClubNameExist(sportsClub.getSportsClubName())){
             return false;
         }
-        if(!sportsClubEmailExist(sportsClub.getEmail()) ){
+        if(sportsClubEmailExist(sportsClub.getEmail())){
             return false;
         }
         if(!checkConstraints(sportsClub)){
@@ -64,12 +62,12 @@ public class SportsClubService {
 
 
     public boolean sportsClubNameExist(String clubName) {
-        return sportsClubRepository.findBySportsClubName(clubName) != null;
+        return sportsClubRepository.findBySportsClubName(clubName) == null;
     }
 
 
     public boolean sportsClubEmailExist(String clubName){
-       return sportsClubRepository.findEmail(clubName) != null;
+       return sportsClubRepository.findEmail(clubName) == null;
     }
 
     public boolean sportsClubOwnerNameExist(String clubOwner){
@@ -82,11 +80,11 @@ public class SportsClubService {
     @Transactional
     public boolean update(SportsClub sportsClubNew) {
         Optional<SportsClub> sportsClubOldOptional = sportsClubRepository.findById(sportsClubNew.getId());
+        if(!checkConstraints(sportsClubNew)){
+            return false;
+        }
         if (sportsClubOldOptional.isPresent()) {
             SportsClub sportsClubOld = sportsClubOldOptional.get();
-            if(sportsClubNameExist(sportsClubNew.getSportsClubName()) || sportsClubEmailExist(sportsClubNew.getEmail()) || sportsClubOwnerNameExist(sportsClubNew.getOwnerName())){
-                return false;
-            }
             sportsClubOld.setOwnerName(sportsClubNew.getOwnerName());
             sportsClubOld.setSportsClubName(sportsClubNew.getSportsClubName());
             sportsClubOld.setEmail(sportsClubNew.getEmail());
