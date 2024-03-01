@@ -32,8 +32,12 @@ CREATE TABLE sponsor (
   CHECK (LENGTH(phone) = 12)
 );
 
-INSERT INTO sponsor (id, name, address, phone, email)
-VALUES 
-(1, 'Dedeman SRL', 'Bucuresti, Romania', '+40712345678', 'dedeman_sport@gmail.ro'),
-(2, 'Aqua Company', 'Timisoara, Romania', '+40798765432', 'Aqua@yahoo.com'),
-(3, 'Decathlon SA', 'Bucuresti, Romania', '+40712365878', 'decathlon@hotmail.net');
+CREATE TABLE sponsorship_contract (
+    id_sponsorship_contract SERIAL PRIMARY KEY,
+    id_athlete INT REFERENCES athlete(id_athlete) ON DELETE CASCADE,
+    id_sponsor INT REFERENCES sponsor(id_sponsor) ON DELETE CASCADE,
+    start_date_sponsorship_contract DATE NOT NULL,
+    end_date_sponsorship_contract DATE NOT NULL,
+    amount NUMERIC(6) NOT NULL,
+    CONSTRAINT start_end_date_sponsorship_contract_ck CHECK (start_date_sponsorship_contract < end_date_sponsorship_contract)
+);

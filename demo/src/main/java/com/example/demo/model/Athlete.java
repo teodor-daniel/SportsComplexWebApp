@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import org.springframework.lang.NonNull;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "athlete")
@@ -29,6 +31,8 @@ public class Athlete {
     @JoinColumn(name = "sports_club_id", nullable = false)
     private SportsClub sportsClub;
 
+    @OneToMany(mappedBy =  "athlete",  cascade = CascadeType.ALL) //here it makes sense to do cascadetype.all to delete in both sides
+    private List<SponsorshipContract> contracts = new ArrayList<>();
     public  Athlete(){}
 
     public Athlete(String name, LocalDate birthdate, String gen, String phoneNumber, SportsClub sportsClub) {
@@ -85,6 +89,14 @@ public class Athlete {
 
     public void setSportsClub(SportsClub sportsClub) {
         this.sportsClub = sportsClub;
+    }
+
+    public List<SponsorshipContract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<SponsorshipContract> contracts) {
+        this.contracts = contracts;
     }
 
     @Override

@@ -30,9 +30,11 @@ public class AthleteService {
     }
 
     public boolean addAthlete(Athlete athlete) {
-        checkConstraint(athlete);
-        athleteRepository.save(athlete);
-        return true;
+        if(checkConstraint(athlete) ){
+            athleteRepository.save(athlete);
+            return true;
+        }
+        return false;
     }
 
     public boolean checkConstraint(Athlete athlete){

@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,6 +24,9 @@ public class Sponsor {
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
+
+    @OneToMany(mappedBy = "sponsor", cascade = CascadeType.ALL)
+    private List<SponsorshipContract> contracts = new ArrayList<>();
 
     public Sponsor(){}
 
@@ -71,6 +75,14 @@ public class Sponsor {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<SponsorshipContract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<SponsorshipContract> contracts) {
+        this.contracts = contracts;
     }
 
     @Override

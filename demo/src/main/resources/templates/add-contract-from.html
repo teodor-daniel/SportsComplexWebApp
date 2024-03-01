@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Contract</title>
+    <link th:href="@{/styles/form.css}" rel="stylesheet">
+
+</head>
+<div th:replace="~{fragments/navbar::navbar}"></div>
+
+<body>
+
+<h1>Add New Contract</h1>
+<form th:action="@{/contracts/add}" th:object="${contract}" method="post">
+    <p>Amount: <input type="number" th:field="*{amount}" /></p>
+    <p>Start Date: <input type="date" th:field="*{startDate}" /></p>
+    <p>End Date: <input type="date" th:field="*{endDate}" />
+
+    <p>Sponsor:
+        <select th:field="*{sponsor}">
+            <option value="">Select sponsor</option>
+            <option th:each="sponsor : ${sponsors}" th:value="${sponsor.getId()}"
+                    th:text="${sponsor.getId()} + ' - ' + ${sponsor.getName()}"></option>
+        </select>
+    </p>
+
+    <p>Athlete:
+        <select th:field="*{athlete}">
+            <option value="">Select athlete</option>
+            <option th:each="athlete : ${athletes}" th:value="${athlete.getId()}"
+                    th:text="${athlete.getId()} + ' - ' + ${athlete.getName()}"></option>
+        </select>
+    </p>
+
+    <p><input type="submit" value="Submit" /></p>
+</form>
+<p th:if="${error}" th:text="${error}"></p>
+<a href="/contracts">
+    <button type="button">Back</button>
+</a>
+</body>
+</html>

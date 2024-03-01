@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Club Information</title>
+  <link th:href="@{/styles/club.css}" rel="stylesheet" />
+
+
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<h1>Contracts Information</h1>
+<div id="clubs-layout-layout">
+  <table>
+    <thead>
+    <tr>
+      <th>Id Contract</th>
+      <th>Id Athlete</th>
+      <th>Id Sponsor</th>
+      <th>Start</th>
+      <th>End</th>
+      <th>Sum</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contracts : ${contract}">
+      <td th:text="${contracts.id}"></td>
+      <td th:text="${contracts.athlete.id}"></td>
+      <td th:text="${contracts.sponsor.id}"></td>
+      <td th:text="${contracts.startDate}"></td>
+      <td th:text="${contracts.endDate}"></td>
+      <td th:text="${contracts.amount}"></td>
+
+<!--      <td>-->
+<!--        <a th:href="@{/clubs/update/{id}(id=${club.id})}">-->
+<!--          <button class="update" type="button">Update</button>-->
+<!--        </a>-->
+<!--        <form th:action="@{/clubs/delete/{id}(id=${club.id})}" method="post">-->
+<!--          <input class="delete" type="submit" value="Delete" />-->
+<!--        </form>-->
+<!--      </td>-->
+    </tr>
+    </tbody>
+
+
+  </table>
+  <a href="/contracts/add">
+    <button class="back" type="button">Add contract</button>
+  </a>
+  <a href="/">
+    <button class="back" type="button">Back</button>
+  </a>
+</div>
+
+</body>
+</html>
