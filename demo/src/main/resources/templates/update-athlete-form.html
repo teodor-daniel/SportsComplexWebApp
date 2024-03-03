@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Update Club</title>
+    <title>Update Athlete</title>
     <link th:href="@{/styles/form.css}" rel="stylesheet">
 
 </head>
@@ -12,7 +12,7 @@
 <form th:action="@{/athletes/update}" th:object="${athlete}" method="post">
     <input type="hidden" th:field="*{id}" />
     <p>Name: <input type="text" th:field="*{name}" /></p>
-    <p>Birthdate: <input type="date" th:field="*{birthdate}" /></p>
+    <p>Birthdate: <input type="date" th:value="${athlete.birthdate}" name="birthdate" /></p>
     <p>Phone Number: <input type="text" th:field="*{phoneNumber}" /></p>
     <p>
         <select th:field="*{gen}">

@@ -56,9 +56,6 @@ public class SponsorService {
     public boolean update(Sponsor sponsor){
         if(checkConstraints(sponsor)){
             Sponsor oldSponsor = sponsorRepository.mustFindById(sponsor.getId());
-            oldSponsor.setAddress(sponsor.getAddress());
-            oldSponsor.setName(sponsor.getName());
-            oldSponsor.setPhone(sponsor.getPhone());
             sponsorRepository.save(oldSponsor);
             return true;
         }

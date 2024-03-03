@@ -22,7 +22,7 @@ public class SponsorController {
     }
 
     @GetMapping("")
-    public String sponsorTable(Model model){
+    public String sponsorTable(Model model) {
         List<Sponsor> sponsor = sponsorService.findAllSponsors();
         model.addAttribute("sponsor", sponsor);
         return "sponsors";
@@ -52,6 +52,7 @@ public class SponsorController {
        Sponsor sponsor = sponsorService.findById(id);
         if (sponsor != null) {
             model.addAttribute("sponsor", sponsor);
+            model.addAttribute("error","Validation error:");
             return "update-sponsor-form";
         } else {
             return "redirect:/sponsor";

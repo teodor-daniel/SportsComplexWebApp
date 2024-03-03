@@ -30,7 +30,7 @@ public class AthleteService {
     }
 
     public boolean addAthlete(Athlete athlete) {
-        if(checkConstraint(athlete) ){
+        if(checkConstraint(athlete)){
             athleteRepository.save(athlete);
             return true;
         }
@@ -50,6 +50,10 @@ public class AthleteService {
         if(athlete.getPhoneNumber().length()  != 12){
             return false;
         }
+        if(athleteRepository.existsByPhoneNumber(athlete.getPhoneNumber()) ){
+            return false;
+        }
+
         if(athlete.getBirthdate() == null){
             return false;
         }
