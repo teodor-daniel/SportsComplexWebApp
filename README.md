@@ -1,6 +1,6 @@
 # SportsClub Management App 🏆
 
-This Spring Boot-based SportsClub Management App offers a full-stack solution for the comprehensive management of sports clubs, emphasizing functionalities for managing athletes 🏃, trainers 🏋️‍♂️, competitions 🏅, and more. This CRUD-centric application not only serves as a practical tool for club administration but also as an educational platform for developers looking to deepen their understanding of the Spring ecosystem 🌱, web development 🕸️, and database integration 🗃️.
+This Spring Boot-based SportsClub Management App offers a full-stack solution for the comprehensive management of sports clubs, emphasizing functionalities for managing athletes 🏃, trainers 🏋️‍♂️, competitions 🏅, and more. This CRUD-centric application not only serves as a practical tool for club administration.
 
 ## Key Features
 
