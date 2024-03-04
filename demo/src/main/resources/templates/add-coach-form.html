@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Coach</title>
+    <link th:href="@{/styles/form.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/navbar::navbar}"></div>
+
+<h1>Add New Coach</h1>
+<form th:action="@{/coaches/add}" th:object="${coach}" method="post">
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p>Salary: <input type="number" th:field="*{salary}" /></p>
+    <p>Sport: <input type="text" th:field="*{sport}" /></p>
+    <p>Birth Date: <input type="date" th:field="*{birthDate}" /></p>
+    <p>Gender: <select th:field="*{gender}">
+        <option value="M">Male</option>
+        <option value="F">Female</option>
+    </select></p>
+    <p>Phone: <input type="text" th:field="*{phone}" /></p>
+
+    <p><input type="submit" value="Submit" /></p>
+</form>
+<p th:if="${error}" th:text="${error}"></p>
+<a href="/coaches">
+    <button type="button">Back</button>
+</a>
+</body>
+</html>

@@ -2,18 +2,20 @@
 drop table sports_club;
 drop table athlete;
 drop table sponsor;
+drop table sponsorship_contract;
+drop table competition;
 
 CREATE TABLE sports_club(
     id SERIAL PRIMARY KEY,
     owner_name VARCHAR(200) NOT NULL,
     sports_club_name VARCHAR(200) NOT NULL UNIQUE,
-    email VARCHAR(100) NOT NULL UNIQUE,
+    email VARCHAR(200) NOT NULL UNIQUE,
 );
 
 
 CREATE TABLE athlete(
     id SERIAL PRIMARY KEY,
-    name VARCHAR(30) NOT NULL,
+    name VARCHAR(200) NOT NULL,
     birthdate DATE NOT NULL,    
     gen CHAR(1) NOT NULL,
     phone_number VARCHAR(12) UNIQUE NOT NULL,
@@ -25,10 +27,10 @@ CREATE TABLE athlete(
 
 CREATE TABLE sponsor (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(30) NOT NULL,
-  address VARCHAR(30) NOT NULL,
+  name VARCHAR(200) NOT NULL,
+  address VARCHAR(200) NOT NULL,
   phone VARCHAR(12) UNIQUE NOT NULL,
-  email VARCHAR(30) UNIQUE NOT NULL,
+  email VARCHAR(200) UNIQUE NOT NULL,
   CHECK (LENGTH(phone) = 12)
 );
 
@@ -39,5 +41,33 @@ CREATE TABLE sponsorship_contract (
     start_date_sponsorship_contract DATE NOT NULL,
     end_date_sponsorship_contract DATE NOT NULL,
     amount NUMERIC(6) NOT NULL,
-    CONSTRAINT start_end_date_sponsorship_contract_ck CHECK (start_date_sponsorship_contract < end_date_sponsorship_contract)
+    CONSTRAINT start_end_date_sponsorship_contract_ck CHECK (start_date_sponsorship_contract <= end_date_sponsorship_contract)
+);
+
+CREATE TABLE competition (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(200) NOT NULL, 
+    organizer VARCHAR(200) NOT NULL,
+    sport VARCHAR(200) NOT NULL,
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    CONSTRAINT data_inceput_competitie_ck CHECK (start_date <= end_date)
+);
+
+CREATE TABLE coach (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(200) NOT NULL,
+  salary INTEGER NOT NULL,
+  sport VARCHAR(200) NOT NULL,
+  birth_date DATE NOT NULL,
+  gender CHAR(1) NOT NULL CHECK (gender IN ('M', 'F')),
+  phone VARCHAR(12) UNIQUE,
+  CONSTRAINT phone_check CHECK (phone IS NULL OR LENGTH(phone) = 12)
+);
+
+CREATE TABLE gym (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(200) UNIQUE NOT NULL,
+    sport VARCHAR(200) NOT NULL,
+	size  INTEGER NOT NULL
 );

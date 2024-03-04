@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coaches</title>
+</head>
+<body>
+<div th:replace="~{fragments/navbar::navbar}"></div>
+<h1>Coaches Information</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Salary</th>
+        <th>Sport</th>
+        <th>Birth Date</th>
+        <th>Gender</th>
+        <th>Phone</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="coach : ${coaches}">
+        <td th:text="${coach.id}"></td>
+        <td th:text="${coach.name}"></td>
+        <td th:text="${coach.salary}"></td>
+        <td th:text="${coach.sport}"></td>
+        <td th:text="${#dates.format(coach.birthDate, 'yyyy-MM-dd')}"></td>
+        <td th:text="${coach.gender}"></td>
+        <td th:text="${coach.phone}"></td>
+        <td>
+            <a th:href="@{/coaches/update/{id}(id=${coach.getId()})}">
+                <button class="update" type="button">Update</button>
+            </a>
+            <form th:action="@{/coaches/delete/{id}(id=${coach.getId()})}" method="post">
+                <input class="delete" type="submit" value="Delete" />
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/coaches/add">
+    <button class="back" type="button">Add Coach</button>
+</a>
+<a href="/">
+    <button class="back" type="button">Back</button>
+</a>
+</body>
+</html>

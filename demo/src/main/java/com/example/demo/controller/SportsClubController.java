@@ -72,12 +72,13 @@ public class SportsClubController {
 //        System.out.println(sportsClubService.findClubById(sportsClub.getId()));
 
         boolean success = sportsClubService.update(sportsClub);
-        if(!success){
-            System.out.println("Validation error");
-            model.addAttribute("error", "Validation error: It seems this name is taken.");
-            return "update-club-form";
+        if(success){
+            return "redirect:/clubs";
+
         }
-        return "redirect:/clubs";
+        System.out.println("Validation error");
+        model.addAttribute("error", "Validation error: It seems this name is taken.");
+        return "update-club-form";
     }
 
 

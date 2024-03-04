@@ -41,7 +41,6 @@ public class SponsorService {
             return false;
         }
         if(sponsorRepository.findByPhone(sponsor.getPhone()) == null){
-            System.out.println("hello");
             return false;
         }
 

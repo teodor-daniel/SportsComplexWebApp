@@ -15,13 +15,13 @@ public class SportsClub {
     private Long id;
 
 
-    @Column(name = "owner_name", nullable = false)
+    @Column(name = "owner_name", nullable = false, length = 200)
     private String ownerName;
 
-    @Column(name = "sports_club_name", nullable = false, unique = true)
+    @Column(name = "sports_club_name", nullable = false, unique = true, length = 200)
     private String sportsClubName;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true, length = 200)
     private String email;
 
     @OneToMany(mappedBy = "sportsClub", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

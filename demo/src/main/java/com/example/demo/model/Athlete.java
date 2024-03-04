@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 
 import java.time.LocalDate;
@@ -14,10 +15,12 @@ public class Athlete {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 200)
 
     private String name;
 
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(nullable = false)
     private LocalDate birthdate;
 

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Training Sessions</title>
+    <link th:href="@{/styles/form.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/navbar::navbar}"></div>
+
+<h1>Training Sessions</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Sport</th>
+        <th>Duration</th>
+        <th>Warm Up Duration</th>
+        <th>Gym</th>
+        <th>Coach</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="training : ${trainings}">
+        <td th:text="${training.id}"></td>
+        <td th:text="${training.sport}"></td>
+        <td th:text="${training.duration}"></td>
+        <td th:text="${training.warmUpDuration}"></td>
+        <td th:text="${training.gym.name}"></td>
+        <td th:text="${training.coach.name}"></td>
+        <td>
+            <a th:href="@{/trainings/update/{id}(id=${training.id})}">
+                <button type="button">Update</button>
+            </a>
+            <form th:action="@{/trainings/delete/{id}(id=${training.id})}" method="post">
+                <input type="submit" value="Delete" />
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/trainings/add}">
+    <button type="button">Add Training Session</button>
+</a>
+<a href="/">
+    <button type="button">Back</button>
+</a>
+</body>
+</html>

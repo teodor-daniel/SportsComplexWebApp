@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Training Session</title>
+    <link th:href="@{/styles/form.css}" rel="stylesheet">
+</head>
+<div th:replace="~{fragments/navbar::navbar}"></div>
+
+<body>
+
+<h1>Add New Training Session</h1>
+<form th:action="@{/trainings/add}" th:object="${training}" method="post">
+    <p>Sport: <input type="text" th:field="*{sport}" /></p>
+    <p>Duration: <input type="number" th:field="*{duration}" /></p>
+    <p>Warm Up Duration: <input type="number" th:field="*{warmUpDuration}" /></p>
+
+    <p>Gym:
+        <select th:field="*{gym}">
+            <option value="">Select Gym</option>
+            <option th:each="gym : ${gyms}" th:value="${gym.id}"
+                    th:text="${gym.name}"></option>
+        </select>
+    </p>
+
+    <p>Coach:
+        <select th:field="*{coach}">
+            <option value="">Select Coach</option>
+            <option th:each="coach : ${coaches}" th:value="${coach.id}"
+                    th:text="${coach.name}"></option>
+        </select>
+    </p>
+
+    <p><input type="submit" value="Submit" /></p>
+</form>
+<p th:if="${error}" th:text="${error}"></p>
+<a href="/trainings">
+    <button type="button">Back</button>
+</a>
+</body>
+</html>

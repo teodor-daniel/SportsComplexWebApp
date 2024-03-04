@@ -63,10 +63,9 @@ public class AthleteController {
 
     @PostMapping("/update")
     public String updateClub(@ModelAttribute Athlete athlete, Model model) {
-
         boolean success = athleteService.update(athlete);
         if(!success){
-            System.out.println("Eroare succes");
+            System.out.println("Eroare");
             model.addAttribute("error", "Validation error");
             return "update-athlete-form";
         }

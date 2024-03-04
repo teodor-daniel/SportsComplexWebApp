@@ -38,22 +38,16 @@ public class AthleteService {
     }
 
     public boolean checkConstraint(Athlete athlete){
-        if (!clubRepository.existsById(athlete.getSportsClub().getId())) {
-            return false;
-        }
         if(athlete.getName().length() > 30){
             return false;
         }
         if(!(athlete.getGen().equals("M") || athlete.getGen().equals("F"))){
+            System.out.println("Gender");
             return false;
         }
         if(athlete.getPhoneNumber().length()  != 12){
             return false;
         }
-        if(athleteRepository.existsByPhoneNumber(athlete.getPhoneNumber()) ){
-            return false;
-        }
-
         if(athlete.getBirthdate() == null){
             return false;
         }

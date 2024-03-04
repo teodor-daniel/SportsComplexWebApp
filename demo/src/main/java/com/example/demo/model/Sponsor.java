@@ -13,16 +13,16 @@ public class Sponsor {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false, unique = true, length = 200)
     private String name;
 
-    @Column(name = "address", nullable = false)
+    @Column(name = "address", nullable = false, length = 200)
     private String address;
 
     @Column(name ="phone", nullable = false, unique = true)
     private String phone;
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true, length = 200)
     private String email;
 
     @OneToMany(mappedBy = "sponsor", cascade = CascadeType.ALL)

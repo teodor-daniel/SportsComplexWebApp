@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -20,9 +21,13 @@ public class SponsorshipContract {
     @JoinColumn(name = "id_sponsor", nullable = false)
     private Sponsor sponsor;
 
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
 
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "end_date", nullable = false)
     private LocalDate endDate;
 
