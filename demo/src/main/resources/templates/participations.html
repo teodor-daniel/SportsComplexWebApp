@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Participation Information</title>
+    <link th:href="@{/styles/club.css}" rel="stylesheet" />
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<h1>Participation Information</h1>
+<div id="clubs-layout-layout">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Athlete Name</th>
+            <th>Competition Name</th>
+            <th>Sport</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="participation : ${participations}">
+            <td th:text="${participation.id}"></td>
+            <td th:text="${participation.athlete.name}"></td>
+            <td th:text="${participation.competition.name}"></td>
+            <td th:text="${participation.sport}"></td>
+            <td>
+                <a th:href="@{/participations/update/{id}(id=${participation.id})}">
+                    <button class="update" type="button">Update</button>
+                </a>
+                <form th:action="@{/participations/delete/{id}(id=${participation.id})}" method="post">
+                    <input class="delete" type="submit" value="Delete" />
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/participations/add">
+        <button class="back" type="button">Add Participation</button>
+    </a>
+    <a href="/">
+        <button class="back" type="button">Back</button>
+    </a>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Athlete Training Program</title>
+    <link th:href="@{/styles/form.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="~{fragments/navbar::navbar}"></div>
+<h1>Update Athlete Training Program</h1>
+<form th:action="@{/athletes-trainings-programs/update}" th:object="${athleteTrainingProgram}" method="post">
+    <input type="hidden" th:field="*{id}" />
+    <p>Sport: <input type="text" th:field="*{sport}" /></p>
+    <p>Repetitions: <input type="number" th:field="*{repetitions}" /></p>
+    <p>Program Date: <input type="date" th:field="*{programDate}" /></p>
+
+    <p>Athlete:
+        <select th:field="*{athlete}">
+            <option value="">Select Athlete</option>
+            <option th:each="athlete : ${athletes}" th:value="${athlete.id}"
+                    th:text="${athlete.name}"></option>
+        </select>
+    </p>
+
+    <p>Training:
+        <select th:field="*{training}">
+            <option value="">Select Training</option>
+            <option th:each="training : ${trainings}" th:value="${training.id}"
+                    th:text="${training.sport}"></option>
+        </select>
+    </p>
+
+    <input type="submit" value="Update" />
+</form>
+<p th:if="${error}" th:text="${error}"></p>
+<a href="/athletes-trainings-programs">
+    <button type="button">Back</button>
+</a>
+</body>
+</html>

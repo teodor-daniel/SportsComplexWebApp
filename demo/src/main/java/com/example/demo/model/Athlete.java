@@ -36,6 +36,10 @@ public class Athlete {
 
     @OneToMany(mappedBy =  "athlete",  cascade = CascadeType.ALL) //here it makes sense to do cascadetype.all to delete in both sides
     private List<SponsorshipContract> contracts = new ArrayList<>();
+
+    @OneToMany(mappedBy = "athlete", cascade = CascadeType.ALL)
+    private List<Participation> participations = new ArrayList<>();
+
     public  Athlete(){}
 
     public Athlete(String name, LocalDate birthdate, String gen, String phoneNumber, SportsClub sportsClub) {
@@ -100,6 +104,14 @@ public class Athlete {
 
     public void setContracts(List<SponsorshipContract> contracts) {
         this.contracts = contracts;
+    }
+
+    public List<Participation> getParticipations() {
+        return participations;
+    }
+
+    public void setParticipations(List<Participation> participations) {
+        this.participations = participations;
     }
 
     @Override

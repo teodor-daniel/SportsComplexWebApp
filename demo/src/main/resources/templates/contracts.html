@@ -15,8 +15,8 @@
     <thead>
     <tr>
       <th>Id Contract</th>
-      <th>Id Athlete</th>
-      <th>Id Sponsor</th>
+      <th>Name Athlete</th>
+      <th>Name Sponsor</th>
       <th>Start</th>
       <th>End</th>
       <th>Sum</th>
@@ -26,8 +26,8 @@
     <tbody>
     <tr th:each="contracts : ${contract}">
       <td th:text="${contracts.id}"></td>
-      <td th:text="${contracts.athlete.id}"></td>
-      <td th:text="${contracts.sponsor.id}"></td>
+      <td th:text="${contracts.athlete.name}"></td>
+      <td th:text="${contracts.sponsor.name}"></td>
       <td th:text="${contracts.startDate}"></td>
       <td th:text="${contracts.endDate}"></td>
       <td th:text="${contracts.amount}"></td>

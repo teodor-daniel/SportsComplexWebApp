@@ -4,6 +4,12 @@ drop table athlete;
 drop table sponsor;
 drop table sponsorship_contract;
 drop table competition;
+drop table coach;
+drop table gym;
+drop table training;
+drop table participation;
+drop table athlete_training_program;
+
 
 CREATE TABLE sports_club(
     id SERIAL PRIMARY KEY,
@@ -70,4 +76,36 @@ CREATE TABLE gym (
     name VARCHAR(200) UNIQUE NOT NULL,
     sport VARCHAR(200) NOT NULL,
 	size  INTEGER NOT NULL
+);
+
+CREATE TABLE training (
+  id SERIAL PRIMARY KEY,
+  sport VARCHAR(200) NOT NULL,
+  duration INTEGER NOT NULL,
+  warm_up_duration INTEGER NOT NULL,
+  gym_id INTEGER NOT NULL,
+  coach_id INTEGER NOT NULL,
+  CONSTRAINT fk_gym FOREIGN KEY (gym_id) REFERENCES gym (id) ON DELETE CASCADE,
+  CONSTRAINT fk_coach FOREIGN KEY (coach_id) REFERENCES coach (id) ON DELETE CASCADE
+);
+
+
+CREATE TABLE participation (
+    id SERIAL PRIMARY KEY,
+    athlete_id INTEGER NOT NULL,
+    competition_id INTEGER NOT NULL,
+    sport VARCHAR(200) NOT NULL,
+    CONSTRAINT fk_athlete FOREIGN KEY (athlete_id) REFERENCES athlete(id) ON DELETE CASCADE,
+    CONSTRAINT fk_competition FOREIGN KEY (competition_id) REFERENCES competition(id) ON DELETE CASCADE
+);
+
+CREATE TABLE athlete_training_program (
+    id SERIAL PRIMARY KEY,
+    athlete_id INTEGER NOT NULL,
+    training_id INTEGER NOT NULL,
+    repetitions INTEGER NOT NULL,
+    program_date DATE NOT NULL,
+	sport VARCHAR(200) NOT NULL,
+    CONSTRAINT fk_athlete FOREIGN KEY (athlete_id) REFERENCES athlete(id) ON DELETE CASCADE,
+    CONSTRAINT fk_training FOREIGN KEY (training_id) REFERENCES training(id) ON DELETE CASCADE
 );

@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Training Sessions</title>
-    <link th:href="@{/styles/form.css}" rel="stylesheet">
+    <link th:href="@{/styles/club.css}" rel="stylesheet" />
 </head>
 <body>
 <div th:replace="~{fragments/navbar::navbar}"></div>
 
 <h1>Training Sessions</h1>
+<div id="clubs-layout-layout">
 <table>
     <thead>
     <tr>
@@ -31,20 +32,21 @@
         <td th:text="${training.coach.name}"></td>
         <td>
             <a th:href="@{/trainings/update/{id}(id=${training.id})}">
-                <button type="button">Update</button>
+                <button class="update" type="button">Update</button>
             </a>
             <form th:action="@{/trainings/delete/{id}(id=${training.id})}" method="post">
-                <input type="submit" value="Delete" />
+                <input class="delete" type="submit" value="Delete" />
             </form>
         </td>
     </tr>
     </tbody>
 </table>
 <a th:href="@{/trainings/add}">
-    <button type="button">Add Training Session</button>
+    <button class="back" type="button">Add training</button>
 </a>
 <a href="/">
-    <button type="button">Back</button>
+    <button class="back" type="button">Back</button>
 </a>
+</div>
 </body>
 </html>

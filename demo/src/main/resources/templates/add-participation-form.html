@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Participation</title>
+    <link th:href="@{/styles/form.css}" rel="stylesheet">
+</head>
+<div th:replace="~{fragments/navbar::navbar}"></div>
+
+<body>
+
+<h1>Add New Participation</h1>
+<form th:action="@{/participations/add}" th:object="${participation}" method="post">
+    <p>Sport: <input type="text" th:field="*{sport}" /></p>
+
+    <p>Athlete:
+        <select th:field="*{athlete}">
+            <option value="">Select Athlete</option>
+            <option th:each="athlete : ${athletes}" th:value="${athlete.id}"
+                    th:text="${athlete.name}"></option>
+        </select>
+    </p>
+
+    <p>Competition:
+        <select th:field="*{competition}">
+            <option value="">Select Competition</option>
+            <option th:each="competition : ${competitions}" th:value="${competition.id}"
+                    th:text="${competition.name}"></option>
+        </select>
+    </p>
+
+    <p><input type="submit" value="Submit" /></p>
+</form>
+<p th:if="${error}" th:text="${error}"></p>
+<a href="/participations">
+    <button type="button">Back</button>
+</a>
+</body>
+</html>

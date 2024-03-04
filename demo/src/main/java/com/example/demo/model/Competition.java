@@ -3,7 +3,9 @@ package com.example.demo.model;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "competition")
@@ -29,6 +31,9 @@ public class Competition {
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
+
+    @OneToMany(mappedBy = "competition", cascade = CascadeType.ALL)
+    private List<Participation> participations = new ArrayList<>();
 
     public Competition() {}
 
@@ -86,6 +91,14 @@ public class Competition {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public List<Participation> getParticipations() {
+        return participations;
+    }
+
+    public void setParticipations(List<Participation> participations) {
+        this.participations = participations;
     }
 
     @Override

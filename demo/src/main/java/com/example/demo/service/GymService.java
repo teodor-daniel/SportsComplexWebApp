@@ -37,12 +37,14 @@ public class GymService {
 
     @Transactional
     public boolean update(Gym gym) {
-        if (checkConstraints(gym) && gym.getId() != null) {
+        if (checkConstraints(gym)) {
             Gym existingGym = findById(gym.getId());
-            if (existingGym != null) {
-                gymRepository.save(gym);
-                return true;
-            }
+            existingGym.setId(gym.getId());
+            existingGym.setName(gym.getName());
+            existingGym.setSport(gym.getSport());
+            existingGym.setSize(gym.getSize());
+            gymRepository.save(gym);
+            return true;
         }
         return false;
     }
@@ -53,7 +55,15 @@ public class GymService {
     }
 
     private boolean checkConstraints(Gym gym) {
-        // Implement constraint checks as needed
+        if(gym.getId() == null){
+            return false;
+        }
+        if(gym.getName().length() > 200){
+            return false;
+        }
+        if(gym.getSize() < 1){
+            return false;
+        }
         return true;
     }
 }

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Athlete Training Programs</title>
+    <link th:href="@{/styles/club.css}" rel="stylesheet" />
+</head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+<h1>Athlete Training Programs</h1>
+<div id="programs-layout">
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Athlete Name</th>
+            <th>Training Sport</th>
+            <th>Repetitions</th>
+            <th>Program Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="program : ${athleteTrainingPrograms}">
+            <td th:text="${program.id}"></td>
+            <td th:text="${program.athlete.name}"></td>
+            <td th:text="${program.sport}"></td>
+            <td th:text="${program.repetitions}"></td>
+            <td th:text="${program.programDate}"></td>
+            <td>
+                <a th:href="@{/athletes-trainings-programs/update/{id}(id=${program.id})}">
+                    <button class="update" type="button">Update</button>
+                </a>
+                <form th:action="@{/athletes-trainings-programs/delete/{id}(id=${program.id})}" method="post">
+                    <input class="delete" type="submit" value="Delete" />
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/athletes-trainings-programs/add">
+        <button class="back" type="button">Add New Program</button>
+    </a>
+    <a href="/">
+        <button class="back" type="button">Back</button>
+    </a>
+</div>
+</body>
+</html>
