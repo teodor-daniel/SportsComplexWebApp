@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Athlete;
 import com.example.demo.model.Sponsor;
 import com.example.demo.service.SponsorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/sponsors")

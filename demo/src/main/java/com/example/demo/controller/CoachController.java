@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dataTransferObject.CoachTrainingDTO;
 import com.example.demo.model.Coach;
 import com.example.demo.service.CoachService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class CoachController {
 
     @GetMapping("")
     public String coachTable(Model model) {
-        List<Coach> coaches = coachService.findAllCoaches();
+        List<CoachTrainingDTO> coaches = coachService.findAllCoachesWithTrainings();
         model.addAttribute("coaches", coaches);
         return "coaches";
     }

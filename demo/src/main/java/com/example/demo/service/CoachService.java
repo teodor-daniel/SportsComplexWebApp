@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dataTransferObject.CoachTrainingDTO;
 import com.example.demo.model.Coach;
 import com.example.demo.repository.CoachRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,14 @@ public class CoachService {
         return (List<Coach>) coachRepository.findAll();
     }
 
+    public List<CoachTrainingDTO> findAllCoachesWithTrainings(){ return  coachRepository.findAllCoachesWithTrainingCount();}
+
     public Coach findById(Long id){
         Optional<Coach> coach = coachRepository.findById(id);
         return coach.orElse(null);
     }
+
+
 
     @Transactional
     public boolean addCoach(Coach coach) {

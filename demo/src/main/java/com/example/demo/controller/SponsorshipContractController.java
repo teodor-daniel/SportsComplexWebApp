@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Athlete;
-import com.example.demo.model.Sponsor;
 import com.example.demo.model.SponsorshipContract;
-import com.example.demo.service.SponsorService;
 import com.example.demo.service.SponsorshipContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

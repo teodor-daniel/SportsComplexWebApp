@@ -17,6 +17,7 @@
         <th>Birth Date</th>
         <th>Gender</th>
         <th>Phone</th>
+        <th>Trainings</th>
         <th>Actions</th>
     </tr>
     </thead>
@@ -29,6 +30,7 @@
         <td th:text="${#dates.format(coach.birthDate, 'yyyy-MM-dd')}"></td>
         <td th:text="${coach.gender}"></td>
         <td th:text="${coach.phone}"></td>
+        <td th:text="${coach.trainingCount}"></td>
         <td>
             <a th:href="@{/coaches/update/{id}(id=${coach.getId()})}">
                 <button class="update" type="button">Update</button>
@@ -43,7 +45,7 @@
 <a href="/coaches/add">
     <button class="back" type="button">Add Coach</button>
 </a>
-<a href="/">
+<a href="/static">
     <button class="back" type="button">Back</button>
 </a>
 </body>
