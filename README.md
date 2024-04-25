@@ -18,5 +18,8 @@ This Spring Boot-based SportsClub Management App offers a full-stack solution fo
 
 - **Cookie Management:** Utilize cookies 🍪 for a personalized user experience, remembering user preferences and session information.
 
+## 📹 Video:
+- [Video Presentation](https://youtu.be/CMcm3B9HQE0)
+
 ## Technologies Used
 Spring Boot, Spring MVC, Spring Data, JPA, Thymeleaf, PostgreSQL, Bootstrap, Custom CSS
